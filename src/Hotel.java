@@ -11,14 +11,19 @@ public class Hotel {
         this.rooms.add(room);
     }
 
-public void checkIn (int roomNumber, LocalDate from, LocalDate to, String note, int guests) {
-    for (Room room : rooms) {
-        if (roomNumber == room.getNumber() && !room.isOccupied()) {
-            reservations.add(new Reservation(roomNumber, from, to, note, guests));
-            room.setOccupied(true);
-            System.out.println("Room number " + roomNumber + " has been occupied.");
-            return;
+    public void checkIn (int roomNumber, LocalDate from, LocalDate to, String note, int guests) {
+        for (Room room : rooms) {
+            if (roomNumber == room.getNumber() && !room.isOccupied()) {
+                reservations.add(new Reservation(roomNumber, from, to, note, guests));
+                room.setOccupied(true);
+                System.out.println("Room number " + roomNumber + " has been occupied.");
+                return;
+            }
         }
     }
-}
+
+    public void setData(List<Room> rooms, List<Reservation> reservations) {
+        this.rooms = rooms;
+        this.reservations = reservations;
+    }
 }

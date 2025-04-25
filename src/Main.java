@@ -18,11 +18,16 @@ public class Main {
 
         Scanner input = new Scanner(System.in);
         String command;
+
+        String currentFilePath = null;
+        boolean fileLoaded = false;
+
+
         String file = "hotel.txt";
         do {
             command = input.nextLine();
             switch (command) {
-                case "open":
+                case "open": // trqbwa promqna
                     try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
                         writer.write(" nova informacia");
                     } catch (IOException e) {
@@ -31,6 +36,17 @@ public class Main {
                     }
                     System.out.println("File created");
                     break;
+                case "help" :
+                    System.out.println("The following commands are supported:");
+                    System.out.println("open <file> \t\topens <file>");
+                    System.out.println("close \t\tcloses currently opened file");
+                    System.out.println("save \t\tsaves the currently open file");
+                    System.out.println("saveas <file> \t\tsaves the currently open file in <file>");
+                    System.out.println("help \t\tprints this information");
+                    System.out.println("exit \t\texits the program");
+                    break;
+                //case "save":
+                //case "saveas":
                 case "exit":
                     System.out.println("Exiting program...");
                     break;
