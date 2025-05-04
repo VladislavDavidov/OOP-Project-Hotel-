@@ -1,6 +1,7 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Main {
@@ -29,13 +30,34 @@ public class Main {
             switch (command) {
                 case "open": // trqbwa promqna
                     try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-                        writer.write(" nova informacia");
+                        writer.write(hotel.toString());
                     } catch (IOException e) {
-                        e.printStackTrace();
                         System.out.println("File couldn't be created");
                     }
                     System.out.println("File created");
                     break;
+
+
+                case "checkin":
+                    try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+                        System.out.println("Enter room number: ");
+                        int roomNo = Integer.parseInt(input.nextLine());
+                        System.out.println("Enter from: ");
+                        LocalDate from = LocalDate.parse(input.nextLine());
+                        System.out.println("Enter to: ");
+                        LocalDate to = LocalDate.parse(input.nextLine());
+                        System.out.println("Enter note: ");
+                        String note = input.nextLine();
+                        System.out.println("Enter guests: ");
+                        int guests = Integer.parseInt(input.nextLine());
+                        hotel.checkIn(roomNo, from, to, note, guests);
+                        writer.write(hotel.toString());
+                    }catch (IOException e){
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+
+
                 case "help" :
                     System.out.println("The following commands are supported:");
                     System.out.println("open <file> \t\topens <file>");
@@ -45,11 +67,19 @@ public class Main {
                     System.out.println("help \t\tprints this information");
                     System.out.println("exit \t\texits the program");
                     break;
+
+
                 //case "save":
+
+
                 //case "saveas":
+
+
                 case "exit":
                     System.out.println("Exiting program...");
                     break;
+
+
                 default:
                     System.out.println("Invalid command");
             }

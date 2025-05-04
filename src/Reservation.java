@@ -63,6 +63,6 @@ public class Reservation {
                 ", to=" + to +
                 ", note='" + note + '\'' +
                 ", guests=" + guests +
-                '}';
+                "}\n";
     }
 }

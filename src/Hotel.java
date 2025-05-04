@@ -22,8 +22,45 @@ public class Hotel {
         }
     }
 
+    public void availability(LocalDate date){
+        for (Reservation reservation : reservations) {
+            if (!reservation.getFrom().equals(date) || (date.isAfter(reservation.getFrom()) && date.isBefore(reservation.getTo()))) {
+                System.out.println("Room " + reservation.getRoom() + " is available");
+            }
+            else{
+                System.out.println("Room " + reservation.getRoom() + " is NOT available");
+            }
+        }
+    }
+
+    public void checkOut(int number) {
+        for (Room room : rooms) {
+            if (number == room.getNumber() && room.isOccupied()) {
+                room.setOccupied(false);
+                for (int i = reservations.size() - 1; i >= 0; i--) {
+                    if (reservations.get(i).getRoom() == number) {
+                        reservations.remove(i);
+                    }
+                }
+            }
+            System.out.println("Checked out room " + number);
+            return;
+        }
+        System.out.println("Room " + number + " has been checked out");
+    }
+
+
     public void setData(List<Room> rooms, List<Reservation> reservations) {
         this.rooms = rooms;
         this.reservations = reservations;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Hotel{" +
+                "rooms=\n" + rooms +
+                "\n, reservations=\n" + reservations +
+                '}';
     }
 }

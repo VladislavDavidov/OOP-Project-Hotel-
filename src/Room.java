@@ -55,7 +55,7 @@ public class Room {
 
     @Override
     public String toString() {          //тестване
-        return "Room number " + number +
+        return "\nRoom number " + number +
                 " on floor " + floor +
                 " has " + beds + " beds.\n" +
                 "Is it occupied: " + isOccupied + "\n" +
